@@ -8,7 +8,7 @@ If you have any questions, please feel free to email me at dm3yu@uwaterloo.ca
 
 
 # Usage
-The API will be hosted at: `localhost:3000`
+The API will be hosted at: localhost:3000
 
 Here is how you can get started with the API:
 
@@ -85,10 +85,78 @@ Features:
 Feel free to play around with the endpoints on Postman: https://documenter.getpostman.com/view/15504431/2s93CHvFt3
 
 Required Endpoints
--
+- 
+#### All Users 
+- `GET /hackers`
+- Description: returns all hackers' information.
+#### User Information 
+- `GET /hackers/:id`
+- Description: returns specific hacker's information by hacker id. Returns 404 if hacker not found.
+#### Updating User Data
+- `PUT /hackers/:id`
+- Description: update hacker information (supports partial updates) and return the full hacker info after update. Will create new skills if skill does not exist yet, otherwise will update rating of existing skill. It is not possible to remove skills by updating, please refer to Remove Skill From User endpoint. Returns 404 if hacker not found.
+- Sample Body:
+```
+{
+    "name": "Not Breanna Dillon",
+    "company": "Not Jackson Ltd",
+    "skills": [
+        {
+            "skill": "New Skill",
+            "rating": "5"
+        },
+        {
+            "skill": "Swift",
+            "rating": 0
+        }
+    ]
+}
+```
+#### Skills Endpoint
+- `GET /skills?min_frequency=#&max_frequency=#`
+- Description: returns all skills within the `min_frequency` and `max_frequency`, with frequency of how many hackers have each skill.
+
 
 Additional endpoints
 - 
+#### Create User
+- `POST /hackers`
+- Description: creates a new hacker and returns the newly created hacker with new id. 
+- Sample Body:
+```
+{
+    "name": "Daniel Yu",
+    "company": "Daniel Yu's Company",
+    "email": "daniel@daniel.com",
+    "phone": "123-123-1234",
+    "skills": [
+        {
+            "skill": "New Skill",
+            "rating": 1
+        },
+        {
+            "skill": "Express",
+            "rating": 5
+        }
+    ]
+}
+```
+
+#### Delete User
+- `DELETE /hackers/:id`
+- Description: deletes an existing hacker, and returns no content. Returns 404 if hacker not found.
+#### Remove Skill From User
+- `DELETE /hackers/:id/skills/:skillId`
+- Description: removes a skill from a specific hacker. Returns 404 if hacker or skill not found.
+#### Get User's Skills
+- `GET /hackers/:id/skills`
+- Description: returns all the skills of a specific hacker by hacker's id.
+#### Get Users With Skill
+- `GET /hackers/skills/:skillId`
+- Description: returns all the hackers that possess a specific skill by the skill's id.
+#### Add Skill
+- `GET /skills`
+- Description: adds a skill to the database. The thinking behind this is in a registration form, there should be example skills to select from, in addition to new skills inputted by user. 
 
 
 # Improvements To Be Made
