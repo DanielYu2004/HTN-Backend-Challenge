@@ -8,7 +8,7 @@ If you have any questions, please feel free to email me at dm3yu@uwaterloo.ca
 
 
 # Usage
-The API will be hosted at: localhost:3000
+The API will be hosted at: `localhost:3000`
 
 Here is how you can get started with the API:
 
