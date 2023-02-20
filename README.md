@@ -82,7 +82,7 @@ Features:
 
 
 # Endpoints
-Feel free to play around with the endpoints on Postman: https://documenter.getpostman.com/view/15504431/2s93CHvFt3
+Feel free to play around with the endpoints and run them in Postman: https://documenter.getpostman.com/view/15504431/2s93CHvFt3
 
 Required Endpoints
 - 
