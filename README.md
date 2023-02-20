@@ -174,6 +174,8 @@ Additional endpoints
 	- I would sequelize seeders to insert the initial data more efficiently. It would also allow for the ability to manage and reset database states, making development and testing easier
 - Write more unit and integration tests
 	- I would write more comprehensive tests that have more code coverage and depth, to improve code quality and prevent regression
+- More query options for GET
+	- Most of the GET endpoints should include an "include" query parameter that specifies exactly what fields from the model to return. Sequelize automatically adds a "createdAt" and "updatedAt" field, and the endpoints should include the ability to specify exactly what data should be returned. This helps keep things clean, flexible and efficient.
 
 
 # Future Considerations
