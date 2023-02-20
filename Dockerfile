@@ -5,5 +5,6 @@ WORKDIR /src/app
 COPY package*.json /src/app
 RUN npm install
 COPY . /src/app
+RUN npm run seed
 EXPOSE 3000
 CMD [ "npm", "start" ]

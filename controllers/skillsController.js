@@ -6,7 +6,7 @@ const { catchAsync, ApiError } = require('../utils');
 /**
  * POST /skills
  */
-const addSkill = catchAsync(async (req, res, next) => { // TODO: validator
+const addSkill = catchAsync(async (req, res, next) => {
   const skillData = req.body;
 
   // Find skill by name
@@ -29,7 +29,7 @@ const addSkill = catchAsync(async (req, res, next) => { // TODO: validator
 /**
  * GET /skills?min_frequency=<integer>&max_frequency=<integer>
  */
-const getSkills = catchAsync(async (req, res) => { // TODO: validator
+const getSkills = catchAsync(async (req, res) => {
   /* eslint-disable camelcase */
   const { min_frequency, max_frequency } = req.query;
 

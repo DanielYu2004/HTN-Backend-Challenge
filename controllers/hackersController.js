@@ -62,7 +62,7 @@ const getHackers = catchAsync(async (req, res) => {
  * POST /hackers
  * Create a new hacker
  */
-const createHacker = catchAsync(async (req, res) => { // TODO: validator
+const createHacker = catchAsync(async (req, res) => {
   const userData = req.body;
 
   // Create hacker
@@ -103,7 +103,7 @@ const createHacker = catchAsync(async (req, res) => { // TODO: validator
  * PUT /hackers/:id
  * Update an already existing hacker
  */
-const updateHacker = catchAsync(async (req, res, next) => { // TODO: validator
+const updateHacker = catchAsync(async (req, res, next) => {
   const { id } = req.params;
 
   const hacker = await Hacker.findByPk(id);

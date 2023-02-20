@@ -12,7 +12,7 @@ sequelize.sync({ force: false })
 
 // Start server
 app.listen(port, () => {
-  console.log(`Example REST Express app listening at http://localhost:${port}`);
+  console.log(`Hack The North REST Express app listening at http://localhost:${port}`);
 });
 
 // TODO: exit handler

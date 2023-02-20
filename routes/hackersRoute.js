@@ -2,30 +2,32 @@ const express = require('express');
 
 const router = express.Router();
 const { hackersController } = require('../controllers');
-
-// TODO: validators
+const { hackersValidator, validate } = require('../validators');
 
 router
   .route('/')
-  .get(hackersController.getHackers)
-  .post(hackersController.createHacker);
+  .get(validate(hackersValidator.getHackers), hackersController.getHackers)
+  .post(validate(hackersValidator.createHacker), hackersController.createHacker);
 
 router
   .route('/skills/:skillId')
-  .get(hackersController.getHackersWithSkill);
+  .get(validate(hackersValidator.getHackersWithSkill), hackersController.getHackersWithSkill);
 
 router
   .route('/:id/skills/:skillId')
-  .delete(hackersController.removeSkillFromHacker);
+  .delete(
+    validate(hackersValidator.removeSkillFromHacker),
+    hackersController.removeSkillFromHacker,
+  );
 
 router
   .route('/:id')
-  .get(hackersController.getHacker)
-  .put(hackersController.updateHacker)
-  .delete(hackersController.deleteHacker);
+  .get(validate(hackersValidator.getHacker), hackersController.getHacker)
+  .put(validate(hackersValidator.updateHacker), hackersController.updateHacker)
+  .delete(validate(hackersValidator.deleteHacker), hackersController.deleteHacker);
 
 router
   .route('/:id/skills')
-  .get(hackersController.getHackerSkills);
+  .get(validate(hackersValidator.getHackerSkills), hackersController.getHackerSkills);
 
 module.exports = router;
