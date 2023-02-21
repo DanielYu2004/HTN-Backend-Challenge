@@ -9,7 +9,7 @@ If you have any questions, please feel free to email me at dm3yu@uwaterloo.ca
 
 # Usage
 
-The API is publically accessible at: http://54.146.98.209:3000
+The API is publicly accessible at: http://54.146.98.209:3000
 
 Here is how you can get started with the API:
 
