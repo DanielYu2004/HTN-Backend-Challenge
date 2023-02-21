@@ -48,11 +48,11 @@ Testing:
 ```
 .
 ├── ...
-├── controllers  		# main endpoint functionality
+├── controllers  	# main endpoint functionality
 ├── models              # database table schemas
 ├── routes              # endpoints
 ├── tests               # integration tests
-├── utils				# helpers, utility, and middleware
+├── utils		# helpers, utility, and middleware
 ├── database.js         # DB initialization
 ├── hackers.sqlite      # SQLite DB
 ├── seed.js             # script to seed DB
@@ -175,7 +175,7 @@ Additional endpoints
 - Write more unit and integration tests
 	- I would write more comprehensive tests that have more code coverage and depth, to improve code quality and prevent regression
 - More query options for GET
-	- Most of the GET endpoints should include an "include" query parameter that specifies exactly what fields from the model to return. Sequelize automatically adds a "createdAt" and "updatedAt" field, and the endpoints should include the ability to specify exactly what data should be returned. This helps keep things clean, flexible and efficient.
+	- Most of the GET endpoints should include an "include" query parameter that specifies exactly what fields from the model to return. Sequelize automatically adds a "createdAt" and "updatedAt" field or foreign keys, and the endpoints should include the ability to specify exactly what data should be returned. This helps keep things clean, flexible and efficient.
 
 
 # Future Considerations
