@@ -19,7 +19,7 @@ Otherwise, to run the app:
 
  1. Ensure node/npm is installed
  2. Run  `npm install` to install all the required dependencies
- 3. Run  `npm run seed` to seed the database with the example data (this will clear and reseed the database each time)
+ 3. Run  `npm run seed` to seed the database with the example data (this will clear and reseed the database)
  4. Run `npm start`, and the app should be listening on port 3000
  
  ## Testing
