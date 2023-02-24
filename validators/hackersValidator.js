@@ -47,6 +47,8 @@ const updateHacker = {
       skill: Joi.string().required(),
       rating: Joi.number().required(),
     }),
+    instagram: Joi.string(),
+    twitter: Joi.string(),
   }),
 };
 
