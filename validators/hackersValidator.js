@@ -9,6 +9,8 @@ const createHacker = {
     company: Joi.string(),
     email: Joi.string(),
     phone: Joi.string(),
+    instagram: Joi.string(),
+    twitter: Joi.string(),
     skills: Joi.array().items({
       skill: Joi.string().required(),
       rating: Joi.number().required(),
@@ -60,6 +62,18 @@ const getHackerSkills = {
   }),
 };
 
+const getHackerSocials = {
+  params: Joi.object().keys({
+    id: Joi.number().integer().required(),
+  }),
+};
+
+const getHackerSocialsQR = {
+  params: Joi.object().keys({
+    id: Joi.number().integer().required(),
+  }),
+};
+
 module.exports = {
   getHackers,
   createHacker,
@@ -69,4 +83,6 @@ module.exports = {
   updateHacker,
   deleteHacker,
   getHackerSkills,
+  getHackerSocials,
+  getHackerSocialsQR,
 };

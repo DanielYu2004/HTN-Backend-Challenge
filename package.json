@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "http-status": "^1.6.2",
     "joi": "^17.8.1",
+    "qrcode": "^1.5.1",
     "sequelize": "^6.28.0",
     "sqlite3": "^5.0.2"
   },

@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const QRCode = require('qrcode');
 const { Hacker, Skill } = require('../models');
 const { catchAsync, ApiError } = require('../utils');
 
@@ -207,22 +208,18 @@ const getHackersWithSkill = catchAsync(async (req, res) => {
  * DELETE /hackers/:id/skills/:skillId
  * Remove a skill from a hacker
  */
-const removeSkillFromHacker = catchAsync(async (req, res) => {
+const removeSkillFromHacker = catchAsync(async (req, res, next) => {
   const { id, skillId } = req.params;
 
   const hacker = await Hacker.findByPk(id);
 
   // Handle hacker not found
-  if (!hacker) {
-    throw new ApiError(httpStatus.NOT_FOUND, `Hacker not found: ${id}`);
-  }
+  if (!hacker) { return next(new ApiError(httpStatus.NOT_FOUND, `Hacker not found: ${id}`)); }
 
   const skill = await Skill.findByPk(skillId);
 
   // Handle skill not found
-  if (!skill) {
-    throw new ApiError(httpStatus.NOT_FOUND, `Skill not found: ${skillId}`);
-  }
+  if (!skill) { return next(new ApiError(httpStatus.NOT_FOUND, `Skill not found: ${skillId}`)); }
 
   await hacker.removeSkill(skill);
 
@@ -240,6 +237,51 @@ const removeSkillFromHacker = catchAsync(async (req, res) => {
   return res.status(httpStatus.OK).send(updatedHacker);
 });
 
+/**
+ * GET /hackers/:id/socials
+ * Get links to hacker's socials (html)
+ */
+const getHackerSocials = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const hacker = await Hacker.findByPk(id);
+
+  // Handle hacker not found
+  if (!hacker) { return next(new ApiError(httpStatus.NOT_FOUND, `Hacker not found: ${id}`)); }
+
+  const socials = {
+    instagram: hacker.instagram ? `${hacker.instagram}` : 'N/A',
+    twitter: hacker.twitter ? `${hacker.twitter}` : 'N/A',
+  };
+
+  // Format html response
+  const html = `
+  <div style="display:flex;flex-direction:column;font-size:50px">
+  ${hacker.instagram ? `<a href="https://www.instagram.com/${socials.instagram}">instagram: ${socials.instagram}</a>` : ''}
+  ${hacker.twitter ? `<a href="https://twitter.com/${socials.twitter}">twitter: ${socials.twitter}</a>` : ''}
+  </div>
+  `;
+
+  return res.status(httpStatus.OK).send(html);
+});
+
+/**
+ * GET /hackers/:id/socials/qr
+ * Get the QR code for hacker's social media profiles
+ */
+const getHackerSocialsQR = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const url = `${process.env.ENV === 'dev' ? process.env.DEV_URL : process.env.PROD_URL}:${process.env.PORT}/hackers/${id}/socials`;
+
+  // Generate QR code URL
+  const qrImage = await QRCode.toDataURL(url);
+
+  return res.status(httpStatus.OK).send({
+    url,
+    qr_code: qrImage,
+  });
+});
+
 module.exports = {
   getHacker,
   getHackers,
@@ -249,4 +291,6 @@ module.exports = {
   getHackerSkills,
   getHackersWithSkill,
   removeSkillFromHacker,
+  getHackerSocials,
+  getHackerSocialsQR,
 };

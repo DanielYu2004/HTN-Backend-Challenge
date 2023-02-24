@@ -30,4 +30,12 @@ router
   .route('/:id/skills')
   .get(validate(hackersValidator.getHackerSkills), hackersController.getHackerSkills);
 
+router
+  .route('/:id/socials')
+  .get(validate(hackersValidator.getHackerSocials), hackersController.getHackerSocials);
+
+router
+  .route('/:id/socials/qr')
+  .get(validate(hackersValidator.getHackerSocialsQR), hackersController.getHackerSocialsQR);
+
 module.exports = router;

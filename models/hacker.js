@@ -25,6 +25,12 @@ Hacker.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
+  instagram: {
+    type: DataTypes.STRING,
+  },
+  twitter: {
+    type: DataTypes.STRING,
+  },
 }, {
   sequelize, // We need to pass the connection instance
   modelName: 'Hacker', // We need to choose the model name
