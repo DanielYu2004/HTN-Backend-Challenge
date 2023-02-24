@@ -1,8 +1,9 @@
 
+
 # HTN-Backend-Challenge
 
 # Overview
-This is a RESTful API written with Express and Sequelize. It provides CRUD functionality for managing hacker data, along with other cool features. This is my submission for the Hack the North Backend Challenge. 
+This is a RESTful API written with Express and Sequelize. It provides CRUD functionality for managing hacker data, along with other cool features like a QR code system for hacker social media profiles. This is my submission for the Hack the North Backend Challenge. 
 
 If you have any questions, please feel free to email me at dm3yu@uwaterloo.ca
 
@@ -38,6 +39,8 @@ App:
 	- Http-status
 	- Eslint 
 	- Nodemon
+	- dotenv
+	- qrcode
 
 Testing:
 - Mocha
@@ -70,6 +73,12 @@ The Hacker and Skill models were created to store all the necessary data for eac
 
 By following standard normalization rules, I eliminated redundant data and ensured that the database is logically structured, making it easier to maintain and query.
 
+Social Media QR Codes
+- 
+I really enjoyed the social media QR code system Hack the North had at 2022's event. It made networking with other participants seem really natural, and I was quite surprised that I've never seen this feature implemented at other hackathons before. Since the deadline was extended, I decided to steal that functionality for my challenge submission. How does it work?
+
+When updating/creating a hacker, you can additionally add `instagram` and `twitter` fields that represent the hacker's respective social media handle. Hackers can then generate a QR code (or url), that other hackers can scan with their phone (or go to the url) to see a page of that person's social media profiles. 
+
 Features:
 -
 - Data Validation
@@ -80,7 +89,7 @@ Features:
 	- Provides client with clear and concise data, while preventing attackers from gaining information about the system through error messages.
 - Testing
 	- There are integration tests that verify Hackers and Skills endpoint functionality
-	- This allows for cleaner and more maintable code, while preventing regressions
+	- This allows for cleaner and more maintainable code, while preventing regressions
 - Eslint
 	- Used to enforce consistent code style and readability
 
@@ -113,7 +122,8 @@ Required Endpoints
             "skill": "Swift",
             "rating": 0
         }
-    ]
+    ],
+    "twitter": "idonthaveatwitter"
 }
 ```
 #### Skills Endpoint
@@ -142,7 +152,8 @@ Additional endpoints
             "skill": "Express",
             "rating": 5
         }
-    ]
+    ],
+    "instagram": "daniel_me__"
 }
 ```
 
@@ -161,6 +172,16 @@ Additional endpoints
 #### Add Skill
 - `GET /skills`
 - Description: adds a skill to the database. The thinking behind this is in a registration form, there should be example skills to select from, in addition to new skills inputted by user. 
+
+Social Media Endpoints
+-
+
+#### Get Hacker's Socials
+- `GET /hackers/:id/socials`
+- Description: return a page displaying links to the hacker's social media profiles
+#### Get Hacker's QR Code
+- `GET /hackers/:id/socials/qr`
+- Description: returns a QR code that can be scanned to view the hacker's social media profiles, along with an alternative url. (note: if testing locally, and not the live server, please use the url as scanning the QR code with your phone will not work)
 
 
 # Improvements To Be Made
