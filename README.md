@@ -10,7 +10,7 @@ If you have any questions, please feel free to email me at dm3yu@uwaterloo.ca
 
 # Usage
 
-The API is publicly accessible at: http://54.146.98.209:3000
+The API is publicly accessible at: http://54.146.98.209:3000, otherwise locally: localhost:3000
 
 Here is how you can get started with the API:
 
@@ -21,7 +21,7 @@ Otherwise, to run the app:
  1. Ensure node/npm is installed
  2. Run  `npm install` to install all the required dependencies
  3. Run  `npm run seed` to seed the database with the example data (this will clear and reseed the database)
- 4. Run `npm start`, and the app should be listening on port 3000
+ 4. Run `npm start`, and the app should be listening on port 3000 
  
  ## Testing
 To run the integration tests located in `/tests/integration`, run the following command:
