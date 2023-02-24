@@ -271,7 +271,7 @@ const getHackerSocials = catchAsync(async (req, res, next) => {
  */
 const getHackerSocialsQR = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const url = `${process.env.ENV === 'dev' ? process.env.DEV_URL : process.env.PROD_URL}:${process.env.PORT}/hackers/${id}/socials`;
+  const url = `http://${process.env.ENV === 'dev' ? process.env.DEV_URL : process.env.PROD_URL}:${process.env.PORT}/hackers/${id}/socials`;
 
   // Generate QR code URL
   const qrImage = await QRCode.toDataURL(url);
